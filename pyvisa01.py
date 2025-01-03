@@ -15,8 +15,9 @@ hdm3065 = rm.open_resource('USB0::0x049F::0x606E::CN2303013001068::INSTR')
 hdm3065.write('*IDN?')
 
 #タイムアウト指定[ms]
-#これがないとREAD命令で
-hdm3065.timeout = 25000
+#これがないと機器側処理時間が考慮されないのでPyVISAがエラーとなる
+#ちゃんとやるなら同期処理機能があるのでそちらを使うべし
+hdm3065.timeout = 30000
 
 #HDM3065のInit
 hdm3065.write('*RST')                   #キューのRESET命令
